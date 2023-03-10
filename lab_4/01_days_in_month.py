@@ -9,7 +9,12 @@
 
 # Номер месяца получать от пользователя следующим образом
 user_input = input("Введите, пожалуйста, номер месяца: ")
-month = int(user_input)
-print('Вы ввели', month)
+month = int(user_input)-1
+if(month % 7 % 2 == 0):
+    print(31)
+elif(month == 1):
+    print(28)
+else:
+    print(30)
 
 # TODO здесь ваш код

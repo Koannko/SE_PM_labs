@@ -56,3 +56,12 @@ store = {
 #     вывод на консоль количества и стоимости товара на складе
 
 # TODO здесь ваш код
+all_quantity, all_price = 0, 0
+for item in goods:
+    key = goods.get(item)
+    for arg in store.get(key):
+        all_quantity += arg.get("quantity")
+        all_price += arg.get("quantity") * arg.get("price")
+    print(f"{item} - {all_quantity} шт, стоимость {all_price} руб")
+    all_price = 0
+    all_quantity = 0

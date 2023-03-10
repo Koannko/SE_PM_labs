@@ -13,3 +13,9 @@
 educational_grant, expenses = 10000, 12000
 
 # TODO здесь ваш код
+month = 0
+parents_help = 0
+while month < 10:
+    parents_help += expenses * (1 + 0.03 * month) - educational_grant
+    month += 1
+print(f"Студенту надо попросить %.2f рублей" %float(parents_help))
