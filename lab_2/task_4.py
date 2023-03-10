@@ -2,10 +2,7 @@
 # k цифр, что сумма
 # k-х степеней его цифр равна самому числу
 
-digits = []
 is_arm_num = 0
-for m in range(0, 10):
-    digits.append(m)
 
 for k in range(10, 100):
     is_arm_num = (int(k / 10))**2 + (k % 10)**2

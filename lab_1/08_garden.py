@@ -17,27 +17,13 @@ garden_set = set(garden)
 meadow_set = set(meadow)
 # выведите на консоль все виды цветов
 # TODO здесь ваш код
-print(garden_set, meadow_set)
+print(garden_set.union(meadow_set))
 # выведите на консоль те, которые растут и там и там
 # TODO здесь ваш код
-both_flowers = []
-for i in garden_set:
-    for j in meadow_set:
-        if (i == j):
-            both_flowers.append(i)
-print(both_flowers)
+print(garden_set.intersection(meadow_set))
 # выведите на консоль те, которые растут в саду, но не растут на лугу
 # TODO здесь ваш код
-only_meadow_flowers = []
-
-for j in meadow_set:
-    if (j not in garden_set):
-        only_meadow_flowers.append(j)
-print(only_meadow_flowers)
+print(garden_set.difference(meadow_set))
 # выведите на консоль те, которые растут на лугу, но не растут в саду
 # TODO здесь ваш код
-only_garden_flowers = []
-for i in garden_set:
-    if (i not in meadow_set):
-        only_garden_flowers.append(i)
-print(only_garden_flowers)
+print(meadow_set.difference(garden_set))
