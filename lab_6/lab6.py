@@ -185,4 +185,5 @@ def make_anonymous_factorial():
     >>> check(LAB_SOURCE_FILE, 'make_anonymous_factorial', ['Assign', 'AugAssign', 'FunctionDef', 'Recursion'])
     True
     """
-    return lambda x: x * make_anonymous_factorial()(x-1)
+
+    return (lambda f: lambda x: f(f, x))(lambda rec, x: 1 if x == 0 else x * rec(rec, x-1))
