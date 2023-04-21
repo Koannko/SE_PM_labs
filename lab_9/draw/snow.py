@@ -1,7 +1,7 @@
 import simple_draw as sd
 
 def snowflake_gen(width = 800, height = 800):
-    return {'length': sd.random_number(10, 100),
+    return {'length': sd.random_number(10, 20),
             'x': width + sd.randint(-50, 50),
             'y': height + sd.randint(-50, 50),
             'factor_a': sd.random_number(4, 7) / 10,
@@ -9,12 +9,11 @@ def snowflake_gen(width = 800, height = 800):
             'factor_c': sd.random_number(45, 60)
             }
 
-def draw_snowflake():
-    snowflake = snowflake_gen()
+def draw_snowflake(width, height):
+    snowflake = snowflake_gen(width, height)
     point = sd.get_point(snowflake['x'], snowflake['y'])
     sd.snowflake(
-        snowflake['x'], 
-        snowflake['y'],
+        point,
         snowflake['length'],
         sd.COLOR_WHITE,
         snowflake['factor_a'],

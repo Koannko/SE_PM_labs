@@ -24,17 +24,28 @@ from draw.smile import *
 from draw.snow import *
 from draw.tree import *
 from draw.wall import *
+import math
 
-sd.resolution = (2000, 1000)
+sd.resolution = (1000, 600)
 sd.rectangle(sd.get_point(0, 0), sd.get_point(2000, 100), sd.COLOR_GREEN)
 draw_rainbow()
-draw_snowflake(500, 250)
-draw_tree(sd.get_point(1300, 300), 90, 100)
-draw_wall(500, 200)
-sd.rectangle(sd.get_point(1000, 400), sd.get_point(1200, 500), sd.COLOR_BLUE)
-draw_smile(1000, 400, sd.COLOR_YELLOW)
+for i in range(50):
+    draw_snowflake(200, 100)
+draw_tree(sd.get_point(800, 100), 90, 100)
+draw_wall(300, 100)
+sd.rectangle(sd.get_point(400, 150), sd.get_point(500, 200), sd.COLOR_BLUE)
+draw_smile(450, 170, sd.COLOR_YELLOW)
+sd.rectangle(sd.get_point(270, 100), sd.get_point(300, 250), sd.COLOR_RED)
+sd.rectangle(sd.get_point(600, 100), sd.get_point(620, 250), sd.COLOR_RED)
+sd.rectangle(sd.get_point(270, 250), sd.get_point(620, 300), sd.COLOR_RED)
+sd.circle(sd.get_point(100, 500), radius=50, color=sd.COLOR_ORANGE, width=50)
+for i in range(12):
+    start = sd.get_point(100, 500)
+    end = sd.get_point(100 + 100 * math.cos(i * 30), 500 + 100 * math.sin(i * 30))
+    sd.line(start_point=start, end_point=end, color=sd.COLOR_ORANGE, width=5)
 
 
+sd.pause()
 
 # Усложненное задание (делать по желанию)
 # Анимировать картину.
