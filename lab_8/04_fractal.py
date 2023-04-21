@@ -56,10 +56,10 @@ def draw_branches_hardlevel(start_point, start_angle, branch_length):
     
     alpha = 30 * sd.random_number(0, 40) / 100
     branch_length *= 0.75 * sd.random_number(0, 20) / 100    
-    draw_branches(start_point, start_angle + alpha, branch_length)
-    draw_branches(start_point, start_angle - alpha, branch_length)
+    draw_branches_hardlevel(start_point, start_angle + alpha, branch_length)
+    draw_branches_hardlevel(start_point, start_angle - alpha, branch_length)
 
 root_point = sd.get_point(300, 30)
-draw_branches(root_point, 90, 100)
+draw_branches_hardlevel(root_point, 90, 100)
 
 sd.pause()
