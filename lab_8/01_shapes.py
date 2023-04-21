@@ -37,6 +37,23 @@ import simple_draw as sd
 # Результат решения см results/exercise_01_shapes.jpg
 
 # TODO здесь ваш код
+user_input = input("Введите число граней: ")
+face_count = int(user_input)
+print('Вы ввели', face_count)
+
+
+def count_angle(start_point, zero_angle, side_length, count_sides):
+    end_point = start_point
+    angle_shift = int(360 / count_sides)
+    for angle in range(0, 360 - angle_shift, angle_shift):
+        v = sd.get_vector(start_point, angle + zero_angle, side_length)
+        v.draw()
+        start_point = v.end_point
+    sd.line(start_point, end_point)
+
+
+point = sd.get_point(300, 200)
+count_angle(start_point=point, zero_angle=45, side_length=100, count_sides=face_count)
 
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.

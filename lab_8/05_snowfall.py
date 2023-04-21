@@ -16,14 +16,65 @@ N = 20
 # sd.sleep()
 # sd.random_number()
 # sd.user_want_exit()
+width = 800
+height = 800
+sd.resolution = (width, height)
+def start_point():
+    x = height + 200
+    y = sd.randint(10, width - 10)
+    return sd.get_point(x, y)
 
+
+def snowflake_gen():
+    return {'length': sd.random_number(10, 100),
+            'x': sd.randint(10, width - 10),
+            'y': height + sd.randint(100, 400),
+            'factor_a': sd.random_number(4, 7) / 10,
+            'factor_b': sd.random_number(4, 7) / 10,
+            'factor_c': sd.random_number(45, 60)
+            }
+
+
+snowflakes = []
+
+for _ in range(N):
+    snowflakes.append(snowflake_gen())
+
+i = 0
+
+sd.start_drawing()
 
 while True:
-    sd.clear_screen()
     # TODO здесь ваш код
-    sd.sleep(0.1)
+    for snowflake in snowflakes:
+        point = sd.get_point(snowflake['x'], snowflake['y'])
+        sd.snowflake(
+            point, snowflake['length'],
+            sd.background_color,
+            snowflake['factor_a'],
+            snowflake['factor_b'],
+            snowflake['factor_c'])
+
+        snowflake['x'] -= sd.randint(-5, 5)
+        snowflake['y'] -= sd.randint(10, 15)
+
+        point = sd.get_point(snowflake['x'], snowflake['y'])
+        sd.snowflake(
+            point, snowflake['length'],
+            sd.COLOR_WHITE,
+            snowflake['factor_a'],
+            snowflake['factor_b'],
+            snowflake['factor_c'])
+    i += 1
+    if i % 2 == 0:
+        new_snowflake = snowflake_gen()
+        snowflakes.append(snowflake_gen())
+
+    sd.finish_drawing()
+    sd.sleep(0.15)
     if sd.user_want_exit():
         break
+
 sd.pause()
 
 # Примерный алгоритм отрисовки снежинок
