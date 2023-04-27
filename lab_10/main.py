@@ -4,13 +4,11 @@
 # Вклад
 # Расчёт процентов, графика платежей.
 from pathlib import Path
-import pandas as pd
 import PySimpleGUI as sg
 import paket.credit as cred
 import paket.deposit as dep
 import paket.installment as ins
-from docx import Document
-from docx.shared import Inches
+
 
 def settings_window(settings):
     # ------ GUI Definition ------ #
