@@ -21,7 +21,7 @@ class Snowflake:
     
     def move(self):
         self.x -= sd.randint(-5, 5)
-        self.y -= sd.randint(0, 10)
+        self.y -= sd.randint(0, 7)
 
     def draw(self):
         point = sd.get_point(self.x, self.y)
@@ -75,12 +75,16 @@ sd.start_drawing()
 while True:
     for flake in flakes:
         flake.draw()
+    for flake in flakes:
         flake.move()
         if not flake.can_fall():
+            flakes.remove(flake)
             fallen_flakes += 1
-    sd.sleep(0.05)
-    sd.finish_drawing()  # подчитать сколько снежинок уже упало
+        
+    sd.finish_drawing()  
+    sd.sleep(0.1)
     sd.clear_screen()
+    
     if fallen_flakes > count:
         flakes = append_flakes(flakes, fallen_flakes)  # добавить еще сверху
     count = fallen_flakes
