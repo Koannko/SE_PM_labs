@@ -67,7 +67,7 @@ while True:
             snowflake['factor_c'])
     i += 1
     if i % 2 == 0:
-        new_snowflake = snowflake_gen()
+        # new_snowflake = snowflake_gen()
         snowflakes.append(snowflake_gen())
 
     sd.finish_drawing()
