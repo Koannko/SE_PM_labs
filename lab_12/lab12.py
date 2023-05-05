@@ -1,4 +1,4 @@
-from math import log10
+from math import log10, ceil
 class Account:
     """An account has a balance and a holder.
     >>> a = Account('John')
@@ -40,7 +40,8 @@ class Account:
         """Return the number of years until balance would grow to amount."""
         assert self.balance > 0 and amount > 0 and self.interest > 0
         "*** YOUR CODE HERE ***"
-        return log10(amount/self.balance) / log10(1+self.interest)
+        years = log10(amount / self.balance) / log10(1 + self.interest)
+        return ceil(years)
 
 
 class FreeChecking(Account):
@@ -96,23 +97,3 @@ class FreeChecking(Account):
 ### Необязательно задание
 # Реализовать методы effect для классов TutorCard, TACard, PrefessorCard -
 # это сделает игру гораздо интереснее
-ch = FreeChecking('Jack')
-ch.balance = 20
-print(ch.withdraw(100))  # First one's free. Still counts as a free withdrawal even though it was unsuccessful
-    # 'Insufficient funds'
-print(ch.withdraw(3))    # Second withdrawal is also free
-#    17
-print(ch.balance)
-    # 17
-print(ch.withdraw(3))    # Ok, two free withdrawals is enough
-    # 13
-print(ch.withdraw(3))
-    # 9
-ch2 = FreeChecking('John')
-ch2.balance = 10
-print(ch2.withdraw(3)) # No fee
-    # 7
-print(ch.withdraw(3))  # ch still charges a fee
-    # 5
-print(ch.withdraw(5))  # Not enough to cover fee + withdraw
-    # 'Insufficient funds'

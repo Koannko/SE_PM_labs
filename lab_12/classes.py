@@ -85,7 +85,7 @@ class Player:
         self.name = name
         "*** YOUR CODE HERE ***"
         self.hand = []
-        for _ in range(4):
+        for _ in range(5):
             self.draw()
 
     def draw(self):
