@@ -21,7 +21,12 @@
 
 # TODO здесь ваш код
 
-class Water:
+class Element():
+    def __add__(self, element):
+        if self.name == element.name:
+            return self.name
+
+class Water(Element):
 
     def __init__(self):
         self.name = "Вода"
@@ -34,13 +39,13 @@ class Water:
         elif element.name == "Земля":
             return Dirt().__str__()
         else:
-            return None
+            return super().__add__(element)
 
     def __str__(self):
         return self.name
     
 
-class Air:
+class Air(Element):
 
     def __init__(self):
         self.name = "Воздух"
@@ -53,13 +58,13 @@ class Air:
         elif element.name == "Земля":
             return Dust().__str__()
         else:
-            return None
+            return super().__add__(element)
 
     def __str__(self):
         return self.name
     
 
-class Fire:
+class Fire(Element):
 
     def __init__(self):
         self.name = "Огонь"
@@ -72,87 +77,107 @@ class Fire:
         elif element.name == "Земля":
             return Lion().__str__()
         else:
-            return None
+            return super().__add__(element)
 
     def __str__(self):
         return self.name
     
 
-class Earth:
+class Earth(Element):
 
     def __init__(self):
         self.name = "Земля"
 
     def __add__(self, element):
         if element.name == "Вода":
-            return "Грязь"
+            return Dirt().__str__()
+        elif element.name == "Воздух":
+            return Dust().__str__()
+        elif element.name == "Огонь":
+            return Lion().__str__()
         else:
-            return None
-
+            return super().__add__(element)
     def __str__(self):
         return self.name
     
 
 
 
-
-class Storm:
+class Storm(Element):
 
     def __init__(self):
         self.name = "Шторм"
 
+    def ___add__(self, element):
+        return super().__add__(element)
+
     def __str__(self):
         return self.name
 
 
-class Couple:
+class Couple(Element):
 
     def __init__(self):
         self.name = "Пар"
 
+    def ___add__(self, element):
+        return super().__add__(element)
+
     def __str__(self):
         return self.name
     
 
-class Dirt:
+class Dirt(Element):
 
     def __init__(self):
         self.name = "Грязь"
 
+    def ___add__(self, element):
+        return super().__add__(element)
+
     def __str__(self):
         return self.name
 
 
-class Lightning:
+class Lightning(Element):
 
     def __init__(self):
         self.name = "Молния"
 
+    def ___add__(self, element):
+        return super().__add__(element)
+
     def __str__(self):
         return self.name
 
 
-class Dust:
+class Dust(Element):
 
     def __init__(self):
         self.name = "Пыль"
 
+    def ___add__(self, element):
+        return super().__add__(element)
+
     def __str__(self):
         return self.name
 
 
-class Lion:
+class Lion(Element):
 
     def __init__(self):
         self.name = "Лава"
+
+    def ___add__(self, element):
+        return super().__add__(element)
 
     def __str__(self):
         return self.name
     
 
 
-el1 = Fire()
-el2 = Air()
+el1 = Couple()
+el2 = Couple()
 print(el1, '+', el2, '=', el1 + el2)
 # Усложненное задание (делать по желанию)
 # Добавить еще элемент в игру.

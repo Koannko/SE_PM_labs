@@ -25,7 +25,7 @@ class Cat():
 
     def sleep(self):
         if self.is_alive():
-            cprint('{} поспал'.format(self.name), color='yellow')
+            cprint('{} поспал'.format(self.name), color='blue')
             self.fullness -= 10
 
     def make_mess(self):
@@ -185,16 +185,16 @@ John.house = sweet_home
 # Создать несколько (2-3) котов и подселить их в дом к человеку.
 # Им всем вместе так же надо прожить 365 дней.
 Tom = Cat('Tom')
-Trisha = Cat('Trisha')
+# Trisha = Cat('Trisha')
 John.take_cat(Tom)
-John.take_cat(Trisha)
+# John.take_cat(Trisha)
 
 John.take_cat(Snow)
 while days_left:
     John.act()
     Snow.act()
     Tom.act()
-    Trisha.act()
+    # Trisha.act()
     days_left -= 1
 
 # (Можно определить критическое количество котов, которое может прокормить человек...)
