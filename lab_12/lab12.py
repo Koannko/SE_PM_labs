@@ -97,3 +97,7 @@ class FreeChecking(Account):
 ### Необязательно задание
 # Реализовать методы effect для классов TutorCard, TACard, PrefessorCard -
 # это сделает игру гораздо интереснее
+
+val = 19999
+thousands, hundreds, tens, units = list(str(val))
+print(thousands, hundreds, tens, units)
