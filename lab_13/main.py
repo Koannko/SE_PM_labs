@@ -47,7 +47,7 @@ class GUI(BaseWidget):
         self._additions_dep.add_item('Каждый квартал')
         self._additions_dep.add_item('Каждый год')
         self._interest_type_dep = ControlCheckBox('Добавлять начисления ко вкладу')
-        self._amount_of_additions = ControlText('Сумма пополнений вклада')
+        self._amount_of_additions = ControlText('Сумма пополнения')
         self._button_dep = ControlButton('Рассчитать')
         self._button_save_dep = ControlButton('Сохранить отчёт')
         self._button_dep.value = self.__buttonAction_dep
@@ -115,22 +115,6 @@ class GUI(BaseWidget):
         deposit.save_docx(data_lst, compute_list, self.copy_num_dep)
         self.copy_num_dep += 1
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     def __buttonAction_cr(self):
         amount_str = float(self._amount_cr.value)
