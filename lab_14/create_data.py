@@ -5,7 +5,7 @@ from tools import create_database
 from sqlalchemy import select
 
 from config import DATABASE_URI
-from model import Author, Content, SelectionDetails, Selection
+from model import Author, Content, Selection
 
 
 
@@ -31,24 +31,21 @@ def fill_db(sess):
 
     with sess() as session, session.begin():
         auth_id = [a.id for a in session.scalars(select(Author)).all()]
-        selec_id = [s.id for s in session.scalars(select(Selection)).all()]
+        selec_id = [s for s in session.execute(select(Selection)).all()]
 
         for c in contents:
-            cont = Content(author_id=choice(auth_id), selection_id=choice(selec_id), \
+            cont = Content(author_id=choice(auth_id), \
                            name=c[0], abstract=c[3], fillings=c[4])
             session.add(cont)
+           
+            # Link the content to selections
+            selected_selections = sample(selec_id, randint(1, 2))
+            cont.details.extend(selected_selections)
 
+            # Update the reverse relationship in selections
+            for selection in selected_selections:
+                selection.contents.append(cont)
 
-    with sess() as session, session.begin():
-        cont_id = [c.id for c in session.scalars(select(Content)).all()]
-        selec_id = [s.id for s in session.scalars(select(Selection)).all()]
-
-        for sd in cont_id:
-            cont_pids = sample(selec_id, randint(1, 2))
-
-            for sd2 in cont_pids:
-                selec_det = SelectionDetails(content_id=sd, selection_id=sd2, quantity=randint(1, 2))
-                session.add(selec_det)
 
 if __name__ == "__main__":
     print("connecting...")
@@ -61,3 +58,29 @@ if __name__ == "__main__":
     
     session().close()
     print("session closed")
+
+
+
+    # con = Content()
+    # sel = Selection()
+    
+    # sel.details.append(con)
+    # session.add(sel)
+    # session.add(con)
+
+    # with sess() as session, session.begin():
+    #     cont_id = [c.id for c in session.scalars(select(Content)).all()]
+    #     selec_id = [s.id for s in session.scalars(select(Selection)).all()]
+    #     for i in range(4):
+    #         select_det = SelectionDetails(selection_id=choice(selec_id), \
+    #                                       content_id=choice(cont_id))
+    #     for sd in cont_id:
+    #         cont_pids = sample(selec_id, randint(1, 2))
+
+    #         for sd2 in cont_pids:
+    #             selec_det = SelectionDetails(content_id=sd, selection_id=sd2)
+    #             session.add(selec_det)
+
+
+
+
