@@ -19,6 +19,7 @@ def fill_db(sess):
     contents = read_csv("contents") # products
     selections = read_csv("selections") 
 
+
     with sess() as session, session.begin():
         for a in authors:
             auth = Author(name=a[0], email=a[1])
@@ -31,20 +32,16 @@ def fill_db(sess):
 
     with sess() as session, session.begin():
         auth_id = [a.id for a in session.scalars(select(Author)).all()]
-        selec_id = [s for s in session.execute(select(Selection)).all()]
 
         for c in contents:
             cont = Content(author_id=choice(auth_id), \
                            name=c[0], abstract=c[3], fillings=c[4])
-            session.add(cont)
-           
-            # Link the content to selections
-            selected_selections = sample(selec_id, randint(1, 2))
-            cont.details.extend(selected_selections)
 
-            # Update the reverse relationship in selections
-            for selection in selected_selections:
-                selection.contents.append(cont)
+            for _ in range(randint(1, 5)):
+                s = Selection(name=choice(selections)[0])
+                cont.selections.append(s)
+            session.add(cont)
+            session.add(s)
 
 
 if __name__ == "__main__":
